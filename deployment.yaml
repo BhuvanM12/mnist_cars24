@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mnist-inference
+spec:
+  selector:
+    matchLabels:
+      run: mnist-inference
+      app: mnist-inference
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: mnist-inference
+        app: mnist-inference
+    spec:
+      containers:
+        - name: mnist-inference
+          image: mnist-inference:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
